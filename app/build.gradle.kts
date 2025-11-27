@@ -1,9 +1,17 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
-    id("java")
+    id("application")
+    id("org.sonarqube") version "7.1.0.6387"
+    id("checkstyle")
+    id("jacoco")
 }
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
+
+application { mainClass.set("hexlet.code.App") }
 
 repositories {
     mavenCentral()
@@ -16,4 +24,18 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        exceptionFormat = TestExceptionFormat.FULL
+        events = setOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        showStandardStreams = true
+    }
+}
+
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
+
+sonar {
+    properties {
+        property("sonar.projectKey", "Someloseyouth_java-project-78")
+        property("sonar.organization", "someloseyouth")
+    }
 }
