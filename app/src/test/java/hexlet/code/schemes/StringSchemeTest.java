@@ -1,5 +1,6 @@
-package hexlet.code;
+package hexlet.code.schemes;
 
+import hexlet.code.Validator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,66 +29,57 @@ class StringSchemeTest {
 
     @Test
     void requiredIsValidNull() {
-        schema.required();
-        boolean result = schema.isValid(null);
+        boolean result = schema.required().isValid(null);
         Assertions.assertFalse(result);
     }
 
     @Test
     void requiredIsValidEmptyString() {
-        schema.required();
-        boolean result = schema.isValid("");
+        boolean result = schema.required().isValid("");
         Assertions.assertFalse(result);
     }
 
     @Test
     void requiredIsValidString() {
-        schema.required();
-        boolean result = schema.isValid("Hexlet");
+        boolean result = schema.required().isValid("Hexlet");
         Assertions.assertTrue(result);
     }
 
     @Test
     void requiredIsValidContainsTrue() {
-        schema.required();
-        boolean result = schema.contains("Hex").isValid("Hexlet");
+        boolean result = schema.required().contains("Hex").isValid("Hexlet");
         Assertions.assertTrue(result);
     }
 
     @Test
     void requiredIsValueContainsFalse() {
-        schema.required();
-        boolean result = schema.contains("Java").isValid("Hexlet");
+        boolean result = schema.required().contains("Java").isValid("Hexlet");
         Assertions.assertFalse(result);
     }
 
     @Test
     void requiredIsValidMinLengthTrue() {
-        schema.required();
-        boolean result = schema.minLength(4).isValid("Hexlet");
+        boolean result = schema.required().minLength(4).isValid("Hexlet");
         Assertions.assertTrue(result);
 
     }
 
     @Test
     void requiredIsValidMinLengthFalse() {
-        schema.required();
-        boolean result = schema.minLength(21).isValid("Hexlet");
+        boolean result = schema.required().minLength(21).isValid("Hexlet");
         Assertions.assertFalse(result);
 
     }
 
     @Test
     void requiredIsValueMinLengthMultipleCalls() {
-        schema.required();
-        boolean result = schema.minLength(10).minLength(2).isValid("Hexlet");
+        boolean result = schema.required().minLength(10).minLength(2).isValid("Hexlet");
         Assertions.assertTrue(result);
     }
 
     @Test
     void allRulesCombination() {
-        schema.required();
-        boolean result = schema.minLength(5).contains("H").isValid("Hexlet");
+        boolean result = schema.required().minLength(5).contains("H").isValid("Hexlet");
         Assertions.assertTrue(result);
     }
 }

@@ -1,13 +1,8 @@
-package hexlet.code;
+package hexlet.code.schemes;
 
-public class StringSchema {
+public class StringSchema extends BaseSchema<String> {
     private int minLength;
     private String contains;
-    private boolean required;
-
-    public StringSchema() {
-
-    }
 
     public StringSchema required() {
         this.required = true;
@@ -24,19 +19,17 @@ public class StringSchema {
         return this;
     }
 
+    @Override
     public boolean isValid(String value) {
+        if (!required) {
+            return true;
+        }
         if (required && (value == null || value.isEmpty())) {
             return false;
         }
-
-        if ((value == null || value.isEmpty()) && !required) {
-            return true;
-        }
-
         if (minLength > 0 && value.length() < minLength) {
             return false;
         }
-
         if (contains != null && !value.contains(contains)) {
             return false;
         }

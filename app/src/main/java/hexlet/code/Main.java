@@ -1,5 +1,7 @@
 package hexlet.code;
 
+import hexlet.code.schemes.StringSchema;
+
 public class Main {
     public static void main(String[] args) {
         Validator v = new Validator();
