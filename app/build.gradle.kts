@@ -45,3 +45,12 @@ sonar {
         property("sonar.organization", "someloseyouth")
     }
 }
+
+tasks.register<Exec>("jshell") {
+    group = "demo"
+    description = "Запуск JShell"
+    dependsOn("classes")
+    val classpath = File("$buildDir/classes/java/main").absolutePath
+    commandLine("jshell", "--class-path", classpath)
+    standardInput = System.`in`
+}

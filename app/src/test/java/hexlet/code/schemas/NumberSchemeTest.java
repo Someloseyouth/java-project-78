@@ -1,4 +1,4 @@
-package hexlet.code.schemes;
+package hexlet.code.schemas;
 
 import hexlet.code.Validator;
 import org.junit.jupiter.api.Assertions;

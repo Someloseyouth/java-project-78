@@ -1,4 +1,4 @@
-package hexlet.code.schemes;
+package hexlet.code.schemas;
 
 public class StringSchema extends BaseSchema<String> {
     private int minLength;
@@ -24,12 +24,15 @@ public class StringSchema extends BaseSchema<String> {
         if (!required) {
             return true;
         }
-        if (required && (value == null || value.isEmpty())) {
+        // проверка на null и пустой String
+        if (value == null || value.isEmpty()) {
             return false;
         }
+        // проверка минимальной длины
         if (minLength > 0 && value.length() < minLength) {
             return false;
         }
+        // проверка на содержание подстроки
         if (contains != null && !value.contains(contains)) {
             return false;
         }

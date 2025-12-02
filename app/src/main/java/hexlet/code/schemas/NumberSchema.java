@@ -1,8 +1,7 @@
-package hexlet.code.schemes;
+package hexlet.code.schemas;
 
 public class NumberSchema extends BaseSchema<Integer> {
     private boolean positive;
-    //    private boolean range;
     private int minRange = Integer.MIN_VALUE;
     private int maxRange = Integer.MAX_VALUE;
 
@@ -27,12 +26,15 @@ public class NumberSchema extends BaseSchema<Integer> {
         if (!required) {
             return true;
         }
-        if (required && value == null) {
+        // проверка на null
+        if (value == null) {
             return false;
         }
+        // проверка положительного числа
         if (positive && value <= 0) {
             return false;
         }
+        // проверка числа на вхождение в заданный диапазон
         if (value < minRange || value > maxRange) {
             return false;
         }

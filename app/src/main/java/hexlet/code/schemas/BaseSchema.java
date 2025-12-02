@@ -1,6 +1,6 @@
-package hexlet.code.schemes;
+package hexlet.code.schemas;
 
-abstract class BaseSchema<T> {
+public abstract class BaseSchema<T> {
     protected boolean required;
     abstract boolean isValid(T value);
 }
