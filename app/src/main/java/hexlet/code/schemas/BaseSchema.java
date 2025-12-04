@@ -12,7 +12,7 @@ public abstract class BaseSchema<T> {
         checks.put(name, validate);
     }
 
-    public boolean isValid(T value) {
+    public final boolean isValid(T value) {
         if (!required && value == null) {
             return true;
         }
