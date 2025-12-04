@@ -84,8 +84,6 @@ class MapSchemaTest {
         human2.put("firstName", "John");
         human2.put("lastName", null);
         boolean result = schema.isValid(human2);
-        System.out.println("CRITICAL: v.string().required().isValid(null) = " + result);
-        System.out.println("EXPECTED: false | GOT: " + result);
         Assertions.assertFalse(result);
     }
 
