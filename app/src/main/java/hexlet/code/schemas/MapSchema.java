@@ -3,7 +3,6 @@ package hexlet.code.schemas;
 import java.util.Map;
 
 public final class MapSchema extends BaseSchema<Map<String, String>> {
-    private Map<String, BaseSchema<String>> shapeMap;
 
     public MapSchema required() {
         required = true;
@@ -17,12 +16,11 @@ public final class MapSchema extends BaseSchema<Map<String, String>> {
     }
 
     public MapSchema shape(Map<String, BaseSchema<String>> schemas) {
-        shapeMap = schemas;
         addCheck("shape", mapValue -> {
-            if (shapeMap == null || shapeMap.isEmpty()) {
+            if (schemas == null || schemas.isEmpty()) {
                 return true;
             }
-            for (Map.Entry<String, BaseSchema<String>> entry : shapeMap.entrySet()) {
+            for (Map.Entry<String, BaseSchema<String>> entry : schemas.entrySet()) {
                 String val = mapValue.get(entry.getKey());
                 if (!entry.getValue().isValid(val)) {
                     return false;
